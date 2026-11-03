@@ -85,11 +85,30 @@ npm test
 
 The tests cover the check itself, the three samples end to end, and the LLM path with a fake model that invents one total.
 
+## Design decisions
+
+| Decision | Alternative I rejected | Why |
+|---|---|---|
+| The check runs outside the model, in plain code | Ask the model for a confidence score | A model that invents a value also reports high confidence in it. A substring check can't be talked into anything. |
+| Exact match after whitespace is normalised | Fuzzy matching | Fuzzy matching lets the dangerous errors through: `GBP 48,100` and `GBP 48,000` are one character apart. Whitespace is the only noise PDF extraction adds reliably. |
+| The value must sit inside its own quote | Check the quote only | A model can copy a true sentence and still report the wrong number next to it. Checking both closes that gap. |
+| An offline rules extractor ships with it | LLM only | The demo runs without a key, the tests are deterministic, and the rules are a baseline to measure a model against. |
+| Any OpenAI-compatible API | One vendor SDK | Grok, OpenAI, a local model: one base URL and one model name. No lock-in, no extra dependency. |
+| Page-level evidence | Bounding boxes | A page and a quote are enough for a person to check a value in seconds. Coordinates are the next step (below). |
+
 ## Limits
 
 - Text PDFs only. A scanned PDF needs OCR first.
 - The offline rules only know the sample layouts. Real documents need the LLM mode.
 - Every name, address and number in `samples/` is made up.
+
+## What's next
+
+- **Highlight on the rendered PDF.** Map each quote to its coordinates, so the reviewer sees the box on the page itself.
+- **Scanned documents.** OCR first, with the OCR text as the page text, so the same check applies.
+- **Tables.** Rent rolls and service charge budgets are tables. The quote becomes a row, and the check becomes cell by cell.
+- **Normalised values.** Dates to ISO and money to cents, with the raw text kept as the traced evidence.
+- **An evaluation set.** Precision and recall per field, per extractor, so a model change is measured instead of eyeballed.
 
 ## License
 
