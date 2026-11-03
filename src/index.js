@@ -4,7 +4,7 @@ import { verify } from './trace.js';
 import { extractWithRules } from './extract/rules.js';
 import { extractWithLlm, llmConfig } from './extract/llm.js';
 
-export { SCHEMAS, classify, verify, readPages };
+export { SCHEMAS, classify, verify, readPages, llmConfig };
 
 // PDF bytes in, traced fields out. `extractor` is 'auto' (LLM when a key is set), 'rules' or 'llm'.
 // Pass `schemas` to extract your own document types (see src/schemas.js for the shape).
