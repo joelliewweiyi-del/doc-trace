@@ -39,6 +39,15 @@ LLM_API_KEY=... LLM_BASE_URL=https://api.openai.com/v1 LLM_MODEL=gpt-4.1 npm sta
 
 Any OpenAI-compatible chat API works. The default model is `grok-4`; set `LLM_MODEL` to change it. Force a mode with `--rules` or `--llm` on the command line.
 
+## Use it as a library
+
+```js
+import { processPdf } from 'doc-trace';
+const { type, fields } = await processPdf(pdfBytes, { schemas: mySchemas }); // schemas is optional
+```
+
+`fields` is a list of `{ key, label, value, page, quote, status, reason }`. Pass your own `schemas` (same shape as `src/schemas.js`) to extract other document types.
+
 ## How the check works
 
 `src/trace.js` is the whole rule:

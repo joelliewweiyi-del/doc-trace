@@ -38,3 +38,12 @@ test('auto mode stays offline when no key is set', async () => {
   const r = await processPdf(await sample('invoice.pdf'), { env: {} });
   assert.equal(r.extractor, 'rules');
 });
+
+test('callers can pass their own document types', async () => {
+  const schemas = {
+    bill: { detect: /INVOICE/, fields: [{ key: 'ref', label: 'Ref', pattern: /^Invoice number: (.+)$/ }] },
+  };
+  const r = await processPdf(await sample('invoice.pdf'), { ...offline, schemas });
+  assert.equal(r.type, 'bill');
+  assert.deepEqual(r.fields.map((f) => [f.key, f.value, f.status]), [['ref', 'NFS-2026-0412', 'traced']]);
+});

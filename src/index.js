@@ -7,11 +7,12 @@ import { extractWithLlm, llmConfig } from './extract/llm.js';
 export { SCHEMAS, classify, verify, readPages };
 
 // PDF bytes in, traced fields out. `extractor` is 'auto' (LLM when a key is set), 'rules' or 'llm'.
-export async function processPdf(bytes, { extractor = 'auto', env = process.env, fetchFn } = {}) {
+// Pass `schemas` to extract your own document types (see src/schemas.js for the shape).
+export async function processPdf(bytes, { extractor = 'auto', env = process.env, fetchFn, schemas = SCHEMAS } = {}) {
   const pages = await readPages(bytes);
-  const type = classify(pages);
+  const type = classify(pages, schemas);
   if (!type) return { type: null, pages, extractor: null, fields: [], error: 'unknown document type' };
-  const schema = SCHEMAS[type];
+  const schema = schemas[type];
   const config = llmConfig(env);
   const useLlm = extractor === 'llm' || (extractor === 'auto' && config);
   if (useLlm && !config) throw new Error('extractor "llm" needs LLM_API_KEY or XAI_API_KEY');

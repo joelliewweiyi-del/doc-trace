@@ -43,7 +43,7 @@ export const SCHEMAS = {
   },
 };
 
-export function classify(pages) {
+export function classify(pages, schemas = SCHEMAS) {
   const first = pages[0] ?? '';
-  return Object.keys(SCHEMAS).find((t) => SCHEMAS[t].detect.test(first)) ?? null;
+  return Object.keys(schemas).find((t) => schemas[t].detect.test(first)) ?? null;
 }
