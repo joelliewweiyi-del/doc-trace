@@ -7,7 +7,7 @@ export function llmConfig(env = process.env) {
   return {
     apiKey,
     baseUrl: env.LLM_BASE_URL || 'https://api.x.ai/v1',
-    model: env.LLM_MODEL || 'grok-4',
+    model: env.LLM_MODEL || 'grok-4.7',
   };
 }
 

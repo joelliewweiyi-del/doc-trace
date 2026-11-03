@@ -41,7 +41,13 @@ XAI_API_KEY=... npm start                  # Grok, the default
 LLM_API_KEY=... LLM_BASE_URL=https://api.openai.com/v1 LLM_MODEL=gpt-4.1 npm start
 ```
 
-Any OpenAI-compatible chat API works. The default model is `grok-4`; set `LLM_MODEL` to change it. Force a mode with `--rules` or `--llm` on the command line.
+Any OpenAI-compatible chat API works. The default model is `grok-4.7`; set `LLM_MODEL` to change it. Through OpenRouter:
+
+```sh
+LLM_API_KEY=... LLM_BASE_URL=https://openrouter.ai/api/v1 LLM_MODEL=x-ai/grok-4.7 npm start
+```
+
+On 3 Nov 2026 Grok 4.7 traced 25 of 25 fields on the three sample PDFs. Force a mode with `--rules` or `--llm` on the command line.
 
 ## Use it as a library
 

@@ -30,8 +30,8 @@ test('Grok on xAI is the default model and endpoint', async () => {
   const calls = [];
   const r = await processPdf(await invoice(), { env: { XAI_API_KEY: 'test' }, fetchFn: fakeModel(calls) });
   assert.equal(calls[0].url, 'https://api.x.ai/v1/chat/completions');
-  assert.equal(calls[0].body.model, 'grok-4');
-  assert.equal(r.extractor, 'llm:grok-4');
+  assert.equal(calls[0].body.model, 'grok-4.7');
+  assert.equal(r.extractor, 'llm:grok-4.7');
   assert.match(calls[0].body.messages[0].content, /--- PAGE 1 ---/);
 });
 
