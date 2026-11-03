@@ -1,5 +1,7 @@
 # doc-trace
 
+[![test](https://github.com/joelliewweiyi-del/doc-trace/actions/workflows/test.yml/badge.svg)](https://github.com/joelliewweiyi-del/doc-trace/actions/workflows/test.yml)
+
 Extract fields from real estate documents, and accept a field only when it points to the page and the exact quote it came from.
 
 ![doc-trace demo](docs/demo.gif)
