@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>doc-trace</title>
+<style>
+  :root { --bg:#f7f7f5; --card:#fff; --ink:#1c1c1a; --muted:#6b6b66; --line:#e4e4df;
+          --ok:#1f7a4d; --ok-bg:#e3f4ea; --bad:#b42318; --bad-bg:#fde8e6; --hl:#fff1b8; }
+  * { box-sizing:border-box }
+  body { margin:0; font:14px/1.5 system-ui, -apple-system, sans-serif; background:var(--bg); color:var(--ink) }
+  header { display:flex; flex-wrap:wrap; gap:12px; align-items:center; padding:14px 20px; border-bottom:1px solid var(--line); background:var(--card) }
+  header h1 { font-size:16px; margin:0 12px 0 0 }
+  header .sub { color:var(--muted); flex:1 1 260px }
+  button, label.btn { font:inherit; border:1px solid var(--line); background:var(--card); padding:6px 12px; border-radius:6px; cursor:pointer }
+  button.active { background:var(--ink); color:#fff; border-color:var(--ink) }
+  button.warn { border-color:var(--bad); color:var(--bad) }
+  main { display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; padding:16px 20px }
+  @media (max-width:800px) { main { grid-template-columns:1fr } }
+  .card { background:var(--card); border:1px solid var(--line); border-radius:8px; padding:14px 16px; min-width:0 }
+  .card h2 { font-size:13px; text-transform:uppercase; letter-spacing:.04em; color:var(--muted); margin:0 0 10px }
+  .page { white-space:pre-wrap; font:12.5px/1.7 ui-monospace, Menlo, monospace; border-top:1px dashed var(--line); padding:10px 0 }
+  .page .no { color:var(--muted); font-size:11px }
+  mark { background:var(--hl); border-radius:3px; padding:1px 0 }
+  mark.focus { outline:2px solid var(--ok) }
+  table { width:100%; border-collapse:collapse }
+  td { padding:7px 6px; border-top:1px solid var(--line); vertical-align:top }
+  tr.field { cursor:pointer }
+  tr.field:hover { background:#fafaf7 }
+  .pill { display:inline-block; font-size:11px; font-weight:600; padding:1px 8px; border-radius:99px; white-space:nowrap }
+  .traced { background:var(--ok-bg); color:var(--ok) }
+  .rejected { background:var(--bad-bg); color:var(--bad) }
+  .missing { background:#eee; color:var(--muted) }
+  .why { color:var(--muted); font-size:12px }
+  .val { font-weight:600; overflow-wrap:anywhere }
+  .summary { margin:0 0 10px; color:var(--muted) }
+</style>
+</head>
+<body>
+<header>
+  <h1>doc-trace</h1>
+  <span class="sub">Every field points to its page and quote. Fields that can't be traced are rejected.</span>
+  <span id="samples"></span>
+  <label class="btn">Upload PDF<input id="upload" type="file" accept="application/pdf" hidden></label>
+  <button id="tamper" class="warn">Inject a hallucination</button>
+</header>
+<main>
+  <section class="card"><h2 id="docTitle">Document</h2><div id="pages"></div></section>
+  <section class="card"><h2>Extracted fields</h2><p class="summary" id="summary"></p><table id="fields"></table></section>
+</main>
+<script>
+let current = null;
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]));
+
+function render() {
+  const { pages, fields, type, extractor, name } = current;
+  $('docTitle').textContent = `${name} · ${type ?? 'unknown type'} · ${extractor ?? ''}`;
+  $('pages').innerHTML = pages.map((text, i) => {
+    let html = esc(text);
+    fields.filter((f) => f.status === 'traced' && f.page === i + 1).forEach((f) => {
+      html = html.replace(esc(f.quote), `<mark data-key="${f.key}">${esc(f.quote)}</mark>`);
+    });
+    return `<div class="page"><div class="no">page ${i + 1}</div>${html}</div>`;
+  }).join('');
+  const n = (s) => fields.filter((f) => f.status === s).length;
+  $('summary').textContent = `${n('traced')} traced · ${n('rejected')} rejected · ${n('missing')} missing`;
+  $('fields').innerHTML = fields.map((f) => `
+    <tr class="field" data-key="${f.key}">
+      <td>${esc(f.label)}</td>
+      <td><div class="val">${esc(f.value ?? '—')}</div>
+        <div class="why">${f.status === 'traced' ? `p.${f.page}: “${esc(f.quote)}”` : esc(f.reason)}</div></td>
+      <td><span class="pill ${f.status}">${f.status}</span></td>
+    </tr>`).join('');
+}
+
+async function load(name, request) {
+  const data = await (await request).json();
+  if (data.error && !data.pages) return alert(data.error);
+  current = { ...data, name };
+  document.querySelectorAll('#samples button').forEach((b) => b.classList.toggle('active', b.textContent === name));
+  render();
+}
+
+$('fields').addEventListener('click', (e) => {
+  const row = e.target.closest('tr.field');
+  if (!row) return;
+  document.querySelectorAll('mark').forEach((m) => m.classList.toggle('focus', m.dataset.key === row.dataset.key));
+  document.querySelector(`mark[data-key="${row.dataset.key}"]`)?.scrollIntoView({ block: 'center', behavior: 'smooth' });
+});
+
+$('upload').addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) load(file.name, fetch('/api/extract', { method: 'POST', body: file }));
+});
+
+// Simulates a model that invents a value and a quote. The server's check rejects it.
+$('tamper').addEventListener('click', async () => {
+  // Prefer the last money amount (the total, the deposit): the field a fund controller cares about most.
+  const traced = current.fields.filter((f) => f.status === 'traced');
+  const target = traced.filter((f) => /^[A-Z]{3} \d/.test(f.value)).at(-1) ?? traced.find((f) => /\d/.test(f.value)) ?? traced[0];
+  if (!target) return;
+  const fake = /\d/.test(target.value) ? target.value.replace(/\d/, (d) => String((+d + 3) % 10)) : target.value + ' Holdings';
+  const fields = current.fields.map((f) => f === target ? { ...f, value: fake, quote: target.quote.replace(target.value, fake) } : f);
+  const verified = await (await fetch('/api/verify', { method: 'POST', body: JSON.stringify({ pages: current.pages, fields }) })).json();
+  current = { ...current, fields: verified };
+  render();
+});
+
+(async () => {
+  const samples = await (await fetch('/api/samples')).json();
+  $('samples').innerHTML = samples.map((s) => `<button>${s}</button>`).join(' ');
+  document.querySelectorAll('#samples button').forEach((b) =>
+    b.addEventListener('click', () => load(b.textContent, fetch(`/api/samples/${b.textContent}`))));
+  load(samples.includes('lease.pdf') ? 'lease.pdf' : samples[0], fetch(`/api/samples/${samples.includes('lease.pdf') ? 'lease.pdf' : samples[0]}`));
+})();
+</script>
+</body>
+</html>

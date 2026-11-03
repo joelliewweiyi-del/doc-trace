@@ -1,0 +1,17 @@
+{
+  "name": "doc-trace",
+  "version": "0.1.0",
+  "description": "Extract fields from real estate documents. Every field must point to the page and the exact quote it came from, or it is rejected.",
+  "type": "module",
+  "license": "MIT",
+  "bin": { "doc-trace": "src/cli.js" },
+  "scripts": {
+    "start": "node src/server.js",
+    "extract": "node src/cli.js",
+    "samples": "node samples/make.js",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" },
+  "dependencies": { "unpdf": "^2.1.0" },
+  "devDependencies": { "pdf-lib": "^1.17.1" }
+}
