@@ -41,7 +41,8 @@ export async function extractWithLlm(pages, schema, config, fetchFn = fetch) {
   if (!res.ok) throw new Error(`LLM call failed: ${res.status} ${await res.text()}`);
   const body = await res.json();
   const parsed = JSON.parse(body.choices[0].message.content);
-  const byKey = new Map((parsed.fields ?? []).map((f) => [f.key, f]));
+  const list = Array.isArray(parsed.fields) ? parsed.fields.filter((f) => f && typeof f === 'object') : [];
+  const byKey = new Map(list.map((f) => [f.key, f]));
   return schema.fields.map(({ key, label }) => {
     const f = byKey.get(key) ?? {};
     return { key, label, value: f.value ?? null, page: f.page ?? null, quote: f.quote ?? null };

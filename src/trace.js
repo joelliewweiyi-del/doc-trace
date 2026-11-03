@@ -6,7 +6,9 @@ const norm = (s) => String(s).replace(/\s+/g, ' ').trim();
 
 export function verifyField(pages, field) {
   if (field.value == null || field.value === '') return { status: 'missing', reason: 'not found in the document' };
-  const { page, quote, value } = field;
+  const { quote, value } = field;
+  // Models often send the page as a string; "2" means page 2. Anything else stays as it is and fails below.
+  const page = typeof field.page === 'string' && /^\d+$/.test(field.page) ? Number(field.page) : field.page;
   if (!Number.isInteger(page) || page < 1 || page > pages.length)
     return { status: 'rejected', reason: `page ${page} does not exist` };
   if (!quote) return { status: 'rejected', reason: 'no quote given' };
@@ -18,5 +20,8 @@ export function verifyField(pages, field) {
 }
 
 export function verify(pages, fields) {
-  return fields.map((f) => ({ ...f, ...verifyField(pages, f) }));
+  return fields.map((f) => {
+    const v = verifyField(pages, f);
+    return v.status === 'traced' ? { ...f, page: Number(f.page), ...v } : { ...f, ...v };
+  });
 }

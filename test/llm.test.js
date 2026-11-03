@@ -48,3 +48,19 @@ test('LLM_BASE_URL and LLM_MODEL switch provider', async () => {
 test('asking for the LLM without a key fails loudly', async () => {
   await assert.rejects(processPdf(await invoice(), { extractor: 'llm', env: {} }), /needs LLM_API_KEY/);
 });
+
+// Adversarial model output: wrong shapes must not crash the run, and must not be accepted.
+function modelSays(content) {
+  return async () => ({ ok: true, json: async () => ({ choices: [{ message: { content } }] }) });
+}
+
+test('a page number sent as a numeric string is read as that page', async () => {
+  const fields = [{ key: 'number', value: 'NFS-2026-0412', page: '1', quote: 'Invoice number: NFS-2026-0412' }];
+  const r = await processPdf(await invoice(), { env: { XAI_API_KEY: 'k' }, fetchFn: modelSays(JSON.stringify({ fields })) });
+  assert.equal(r.fields.find((f) => f.key === 'number').status, 'traced');
+});
+
+test('a model that returns fields in the wrong shape gets every field marked missing, not a crash', async () => {
+  const r = await processPdf(await invoice(), { env: { XAI_API_KEY: 'k' }, fetchFn: modelSays(JSON.stringify({ fields: { number: 'x' } })) });
+  assert.ok(r.fields.every((f) => f.status === 'missing'));
+});

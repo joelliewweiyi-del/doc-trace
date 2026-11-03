@@ -59,7 +59,7 @@ function render() {
   $('pages').innerHTML = pages.map((text, i) => {
     let html = esc(text);
     fields.filter((f) => f.status === 'traced' && f.page === i + 1).forEach((f) => {
-      html = html.replace(esc(f.quote), `<mark data-key="${f.key}">${esc(f.quote)}</mark>`);
+      html = html.replace(esc(f.quote), () => `<mark data-key="${f.key}">${esc(f.quote)}</mark>`);
     });
     return `<div class="page"><div class="no">page ${i + 1}</div>${html}</div>`;
   }).join('');

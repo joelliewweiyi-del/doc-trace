@@ -32,11 +32,15 @@ const server = createServer(async (req, res) => {
       return send(res, 200, await processPdf(await body(req)));
     if (req.method === 'POST' && url.pathname === '/api/verify') {
       const { pages, fields } = JSON.parse(await body(req));
+      if (!Array.isArray(pages) || !pages.every((p) => typeof p === 'string') || !Array.isArray(fields) || !fields.every((f) => f && typeof f === 'object'))
+        return send(res, 400, { error: 'expected { pages: string[], fields: object[] }' });
       return send(res, 200, verify(pages, fields));
     }
     send(res, 404, { error: 'not found' });
   } catch (err) {
-    send(res, 500, { error: err.message });
+    // Unreadable JSON or PDF is the caller's mistake; anything else is ours.
+    const badInput = err instanceof SyntaxError || /PDF/i.test(err.name + err.message);
+    send(res, err.code === 'ENOENT' ? 404 : badInput ? 400 : 500, { error: err.code === 'ENOENT' ? 'not found' : err.message });
   }
 });
 
