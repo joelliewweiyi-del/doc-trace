@@ -1,0 +1,616 @@
+{
+  "peildatum": "2026-11-01",
+  "contracts": [
+    {
+      "n": 1,
+      "files": [
+        "01 Huurovereenkomst Wevershof 14 Haarlem.pdf"
+      ],
+      "adres": "Wevershof 14, Haarlem",
+      "huurder": "Bloemenhandel Zonnedauw V.O.F.",
+      "soort": "290",
+      "huur_per_jaar": 21600,
+      "ingangsdatum": "2024-03-01",
+      "einddatum": "2029-02-28",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 8030,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 21.600,-",
+        "zekerheid": "€ 8.030,-",
+        "ingang": "1 maart 2024",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 2,
+      "files": [
+        "02 Huurovereenkomst Brouwersdijk 41 Amersfoort.pdf"
+      ],
+      "adres": "Brouwersdijk 41, Amersfoort",
+      "huurder": "Ploegmaker Accountants B.V.",
+      "soort": "230a",
+      "huur_per_jaar": 38400,
+      "ingangsdatum": "2025-01-01",
+      "einddatum": "2029-12-31",
+      "opzegtermijn_maanden": 6,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 13940,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 38.400,-",
+        "zekerheid": "€ 13.940,-",
+        "ingang": "1 januari 2025",
+        "opzeg": "zes maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 3,
+      "files": [
+        "03 Huurovereenkomst Kerkeweg 7 Middelburg.pdf",
+        "03a Allonge 1 Kerkeweg 7 Middelburg.pdf"
+      ],
+      "adres": "Kerkeweg 7, Middelburg",
+      "huurder": "Slagerij Hendriksen B.V.",
+      "soort": "290",
+      "huur_per_jaar": 26400,
+      "ingangsdatum": "2023-04-01",
+      "einddatum": "2028-03-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 7800,
+      "signaal": null,
+      "afwijking": "Huurlijst: 24.000 per jaar; documenten: 26.400",
+      "traps": [
+        {
+          "check": "huur_per_jaar",
+          "label": "Allonge verhoogt de huur"
+        },
+        {
+          "check": "afwijking",
+          "label": "Huurlijst toont de huur van voor de allonge"
+        }
+      ],
+      "written": {
+        "huur": "€ 24.000,-",
+        "zekerheid": "€ 7.800,-",
+        "ingang": "1 april 2023",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 4,
+      "files": [
+        "04 Huurovereenkomst Lepelaarstraat 18 Groningen.pdf"
+      ],
+      "adres": "Lepelaarstraat 18, Groningen",
+      "huurder": "M. de Bruijn-Kaya",
+      "soort": "woonruimte",
+      "huur_per_jaar": 15000,
+      "ingangsdatum": "2024-09-01",
+      "einddatum": "",
+      "opzegtermijn_maanden": 1,
+      "indexatie": "CPI",
+      "btw_belast": "nee",
+      "zekerheid_bedrag": 2500,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 1.250,-",
+        "zekerheid": "€ 2.500,-",
+        "ingang": "1 september 2024",
+        "opzeg": "één maand"
+      },
+      "scanned": null
+    },
+    {
+      "n": 5,
+      "files": [
+        "05 Huurovereenkomst Gravelandsweg 63 Enschede.pdf"
+      ],
+      "adres": "Gravelandsweg 63, Enschede",
+      "huurder": "Fietsen Van Dalfsen B.V.",
+      "soort": "290",
+      "huur_per_jaar": 48100,
+      "ingangsdatum": "2026-01-01",
+      "einddatum": "2030-12-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 17700,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "huur_per_jaar",
+          "label": "Oude huur staat in de overwegingen"
+        }
+      ],
+      "written": {
+        "huur": "€ 48.100,-",
+        "zekerheid": "€ 17.700,-",
+        "ingang": "1 januari 2026",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 6,
+      "files": [
+        "06 Huurovereenkomst Turfmarktplein 9 Leiden.pdf"
+      ],
+      "adres": "Turfmarktplein 9, Leiden",
+      "huurder": "Kapsalon Studio Noor",
+      "soort": "290",
+      "huur_per_jaar": 19200,
+      "ingangsdatum": "2022-06-01",
+      "einddatum": "2027-05-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "nee",
+      "zekerheid_bedrag": 4800,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 19.200,-",
+        "zekerheid": "€ 4.800,-",
+        "ingang": "1 juni 2022",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 7,
+      "files": [
+        "07 Huurovereenkomst Ganzenmarkt 3 Nijmegen.pdf",
+        "07a Allonge 1 Ganzenmarkt 3 Nijmegen.pdf",
+        "07b Allonge 2 Ganzenmarkt 3 Nijmegen.pdf"
+      ],
+      "adres": "Ganzenmarkt 3, Nijmegen",
+      "huurder": "Boekhandel Het Leesteken B.V.",
+      "soort": "290",
+      "huur_per_jaar": 32500,
+      "ingangsdatum": "2023-01-01",
+      "einddatum": "2032-12-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 10890,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "huur_per_jaar",
+          "label": "Twee allonges: huur uit allonge 1"
+        },
+        {
+          "check": "einddatum",
+          "label": "Twee allonges: einddatum uit allonge 2"
+        }
+      ],
+      "written": {
+        "huur": "€ 30.000,-",
+        "zekerheid": "€ 10.890,-",
+        "ingang": "1 januari 2023",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 8,
+      "files": [
+        "08 Huurovereenkomst Vlasmarkt 27 Breda.pdf"
+      ],
+      "adres": "Vlasmarkt 27, Breda",
+      "huurder": "Studio Veldwerk Architecten B.V.",
+      "soort": "230a",
+      "huur_per_jaar": 46500,
+      "ingangsdatum": "2024-10-01",
+      "einddatum": "2029-09-30",
+      "opzegtermijn_maanden": 6,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 15800,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 46.500,-",
+        "zekerheid": "€ 15.800,-",
+        "ingang": "1 oktober 2024",
+        "opzeg": "zes maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 9,
+      "files": [
+        "09 Huurovereenkomst Kanaalweg 112 Eindhoven.pdf"
+      ],
+      "adres": "Kanaalweg 112, Eindhoven",
+      "huurder": "Zorgbureau Lindehof B.V.",
+      "soort": "230a",
+      "huur_per_jaar": 35400,
+      "ingangsdatum": "2025-02-01",
+      "einddatum": "2030-01-31",
+      "opzegtermijn_maanden": 6,
+      "indexatie": "CPI",
+      "btw_belast": "nee",
+      "zekerheid_bedrag": 8850,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "huur_per_jaar",
+          "label": "Huur staat per maand"
+        }
+      ],
+      "written": {
+        "huur": "€ 2.950,-",
+        "zekerheid": "€ 8.850,-",
+        "ingang": "1 februari 2025",
+        "opzeg": "zes maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 10,
+      "files": [
+        "10 Huurovereenkomst Hazelaarlaan 5 Nijmegen.pdf"
+      ],
+      "adres": "Hazelaarlaan 5, Nijmegen",
+      "huurder": "R. Tahiri",
+      "soort": "woonruimte",
+      "huur_per_jaar": 17760,
+      "ingangsdatum": "2023-03-01",
+      "einddatum": "",
+      "opzegtermijn_maanden": 1,
+      "indexatie": "CPI",
+      "btw_belast": "nee",
+      "zekerheid_bedrag": 2960,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 1.480,-",
+        "zekerheid": "€ 2.960,-",
+        "ingang": "1 maart 2023",
+        "opzeg": "één maand"
+      },
+      "scanned": null
+    },
+    {
+      "n": 11,
+      "files": [
+        "11 Huurovereenkomst Nieuwstad 48 Zutphen.pdf"
+      ],
+      "adres": "Nieuwstad 48, Zutphen",
+      "huurder": "Delicatessen Ferreira V.O.F.",
+      "soort": "290",
+      "huur_per_jaar": 27750,
+      "ingangsdatum": "2024-05-01",
+      "einddatum": "2029-04-30",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 9270,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "huur_per_jaar",
+          "label": "Huurprijs staat op een gescande pagina"
+        },
+        {
+          "check": "zekerheid_bedrag",
+          "label": "Bankgarantie staat op een gescande pagina"
+        }
+      ],
+      "written": {
+        "huur": "€ 27.750,-",
+        "zekerheid": "€ 9.270,-",
+        "ingang": "1 mei 2024",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": {
+        "page": 2,
+        "hides": [
+          "huur",
+          "zekerheid"
+        ]
+      }
+    },
+    {
+      "n": 12,
+      "files": [
+        "12 Huurovereenkomst Industrieweg 15 Zwolle.pdf"
+      ],
+      "adres": "Industrieweg 15, Zwolle",
+      "huurder": "Uitzendbureau Snelstart B.V.",
+      "soort": "230a",
+      "huur_per_jaar": 29400,
+      "ingangsdatum": "2025-07-01",
+      "einddatum": "2030-06-30",
+      "opzegtermijn_maanden": 6,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 10500,
+      "signaal": "BTW-belaste verhuur zonder verklaring van huurder over het 90%-criterium",
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "signalen",
+          "label": "BTW-belast zonder 90%-verklaring"
+        }
+      ],
+      "written": {
+        "huur": "€ 29.400,-",
+        "zekerheid": "€ 10.500,-",
+        "ingang": "1 juli 2025",
+        "opzeg": "zes maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 13,
+      "files": [
+        "13 Huurovereenkomst Steenweg 21 Goes.pdf"
+      ],
+      "adres": "Steenweg 21, Goes",
+      "huurder": "Optiek Van Leeuwen B.V.",
+      "soort": "290",
+      "huur_per_jaar": 33000,
+      "ingangsdatum": "2023-11-01",
+      "einddatum": "2028-10-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 11000,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 33.000,-",
+        "zekerheid": "€ 11.000,-",
+        "ingang": "1 november 2023",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 14,
+      "files": [
+        "14 Huurovereenkomst Marktstraat 5 Deventer.pdf"
+      ],
+      "adres": "Marktstraat 5, Deventer",
+      "huurder": "Schoenen Bakker & Zn B.V.",
+      "soort": "290",
+      "huur_per_jaar": 35100,
+      "ingangsdatum": "2022-08-01",
+      "einddatum": "2027-07-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 11700,
+      "signaal": null,
+      "afwijking": "Huurlijst: 31.500 per jaar; documenten: 35.100",
+      "traps": [
+        {
+          "check": "afwijking",
+          "label": "Huurlijst: cijfers omgedraaid (31.500 tegen 35.100)"
+        }
+      ],
+      "written": {
+        "huur": "€ 35.100,-",
+        "zekerheid": "€ 11.700,-",
+        "ingang": "1 augustus 2022",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 15,
+      "files": [
+        "15 Huurovereenkomst Boulevard 3 Vlissingen.pdf"
+      ],
+      "adres": "Boulevard 3, Vlissingen",
+      "huurder": "IJssalon Dolce Vita",
+      "soort": "290",
+      "huur_per_jaar": [
+        36000,
+        36500
+      ],
+      "ingangsdatum": "2025-04-01",
+      "einddatum": "2030-03-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 11200,
+      "signaal": "Huurprijs in cijfers (€ 36.000) en in letters (36.500) verschillen",
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "signalen",
+          "label": "Huurprijs in cijfers en letters verschilt"
+        }
+      ],
+      "written": {
+        "huur": "€ 36.000,-",
+        "zekerheid": "€ 11.200,-",
+        "ingang": "1 april 2025",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 16,
+      "files": [
+        "16 Huurovereenkomst Sontweg 12 Groningen.pdf"
+      ],
+      "adres": "Sontweg 12, Groningen",
+      "huurder": "Datalab Noord B.V.",
+      "soort": "230a",
+      "huur_per_jaar": 52000,
+      "ingangsdatum": "2024-01-01",
+      "einddatum": "2028-12-31",
+      "opzegtermijn_maanden": 12,
+      "indexatie": "vast 3%",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 18400,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "indexatie",
+          "label": "Vaste indexatie van 3% in plaats van CPI"
+        }
+      ],
+      "written": {
+        "huur": "€ 52.000,-",
+        "zekerheid": "€ 18.400,-",
+        "ingang": "1 januari 2024",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 17,
+      "files": [
+        "17 Huurovereenkomst Havenkade 4 Volendam.pdf"
+      ],
+      "adres": "Havenkade 4, Volendam",
+      "huurder": "Lunchroom De Kade V.O.F.",
+      "soort": "290",
+      "huur_per_jaar": 26000,
+      "ingangsdatum": "2025-03-01",
+      "einddatum": [
+        "2028-02-29",
+        "2030-02-28"
+      ],
+      "opzegtermijn_maanden": 12,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 8400,
+      "signaal": "290-bedrijfsruimte voor drie jaar: geldt op grond van art. 7:292 BW als vijf jaar, tenzij de rechter de afwijking heeft goedgekeurd",
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "signalen",
+          "label": "290-bedrijfsruimte met looptijd van drie jaar"
+        }
+      ],
+      "written": {
+        "huur": "€ 26.000,-",
+        "zekerheid": "€ 8.400,-",
+        "ingang": "1 maart 2025",
+        "opzeg": "twaalf maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 18,
+      "files": [
+        "18 Huurovereenkomst Spoorlaan 40 Tilburg.pdf"
+      ],
+      "adres": "Spoorlaan 40, Tilburg",
+      "huurder": "L. Verhoeven",
+      "soort": "woonruimte",
+      "huur_per_jaar": 16680,
+      "ingangsdatum": "2025-04-01",
+      "einddatum": [
+        "2027-03-31",
+        ""
+      ],
+      "opzegtermijn_maanden": 1,
+      "indexatie": "CPI",
+      "btw_belast": "nee",
+      "zekerheid_bedrag": 2780,
+      "signaal": "Tijdelijk huurcontract voor woonruimte na 1 juli 2024 (Wet vaste huurcontracten): geldt in beginsel voor onbepaalde tijd",
+      "afwijking": null,
+      "traps": [
+        {
+          "check": "signalen",
+          "label": "Tijdelijk huurcontract woonruimte na 1 juli 2024"
+        }
+      ],
+      "written": {
+        "huur": "€ 1.390,-",
+        "zekerheid": "€ 2.780,-",
+        "ingang": "1 april 2025",
+        "opzeg": "één maand"
+      },
+      "scanned": null
+    },
+    {
+      "n": 19,
+      "files": [
+        "19 Huurovereenkomst Velperweg 88 Arnhem.pdf"
+      ],
+      "adres": "Velperweg 88, Arnhem",
+      "huurder": "Juristen Collectief Oost B.V.",
+      "soort": "230a",
+      "huur_per_jaar": 39000,
+      "ingangsdatum": "2024-04-01",
+      "einddatum": "2029-03-31",
+      "opzegtermijn_maanden": 6,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 13500,
+      "signaal": null,
+      "afwijking": null,
+      "traps": [],
+      "written": {
+        "huur": "€ 39.000,-",
+        "zekerheid": "€ 13.500,-",
+        "ingang": "1 april 2024",
+        "opzeg": "zes maanden"
+      },
+      "scanned": null
+    },
+    {
+      "n": 20,
+      "files": [
+        "20 Huurovereenkomst Wilhelminasingel 30 Maastricht.pdf",
+        "20a Opzegging Wilhelminasingel 30 Maastricht.pdf"
+      ],
+      "adres": "Wilhelminasingel 30, Maastricht",
+      "huurder": "Reisbureau Verre Kusten B.V.",
+      "soort": "230a",
+      "huur_per_jaar": 24600,
+      "ingangsdatum": "2021-07-01",
+      "einddatum": "2026-06-30",
+      "opzegtermijn_maanden": 6,
+      "indexatie": "CPI",
+      "btw_belast": "ja",
+      "zekerheid_bedrag": 8200,
+      "signaal": "Huurder heeft opgezegd tegen 30 juni 2026; de huur is op de peildatum geëindigd",
+      "afwijking": "Huurlijst: einddatum 30-06-2031; documenten: opgezegd tegen 30-06-2026",
+      "traps": [
+        {
+          "check": "afwijking",
+          "label": "Opgezegd, maar de huurlijst toont de huur als doorlopend"
+        }
+      ],
+      "written": {
+        "huur": "€ 24.600,-",
+        "zekerheid": "€ 8.200,-",
+        "ingang": "1 juli 2021",
+        "opzeg": "zes maanden"
+      },
+      "scanned": null
+    }
+  ]
+}

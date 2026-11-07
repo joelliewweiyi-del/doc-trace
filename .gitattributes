@@ -1,0 +1,2 @@
+# Generated test data: keep the bytes as written (the rent roll uses CRLF, as Excel does).
+bench/nl-huur/dataroom/** -text
